@@ -1,6 +1,6 @@
 class WeatherReportsController < ApplicationController
   def index
-    location = Location.find_by(name: params[:location])
+    location = Location.find_by!(name: params[:location])
     render json: location.weather_reports.order(day: :asc).as_json
   end
 
