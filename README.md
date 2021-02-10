@@ -7,7 +7,7 @@ A weather report and weather control API.
 * Rails 6
 * Sidekiq for background processing, uses sidekiq-scheduler for recurring fetching of weather reports.
 
-## Install
+## Local Install
 * Create Dockerfile and build image.
 * Create docker-compose file with container configuration.
 * initialize the project (create database, run migrations and seed the database)
@@ -15,6 +15,13 @@ A weather report and weather control API.
 * Add Sidekiq container for bacground jobs
 
 After setup, don't forget to run the seeds. (`rake db:seed`)
+
+## AWS EC2 Setup
+* Use prebuilt AMI  in ireland region (ami-02a236ee2a2c5903a)
+* Deploy EC2 instance
+* Run special command to start application server inside application repository (`unicorn_rails -D -c config/unicorn.rb`) - application server is running on `localhost:8080`
+* Fix nginx configuration so you see the application with should be running on: `http://<server-ip>/weather_reports?location=Ljubljana`
+* (optional) Setup https wtih rewrite on the server 
 
 ## External API
 Uses the OpenWeatherMap API [https://openweathermap.org/api](https://openweathermap.org/api)
